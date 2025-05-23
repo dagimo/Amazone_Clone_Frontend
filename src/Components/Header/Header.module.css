@@ -15,7 +15,7 @@
 .logo_container{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     max-width: 250px;
 }
 
@@ -39,11 +39,12 @@
 .search {
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     border-radius: 10px;
     overflow: hidden;
     width: 100%;
     flex: 1;
+    transition: border-color 0.2s ease-in-out; /* Smooth transition for focus */
 }
 
 .search select,
@@ -51,9 +52,12 @@
     padding: 10px;
     font-weight: bold;
     outline: 1px solid white;
+    flex: 1;
+    
+    /* border: none; */
 }
 
-.serach select {
+.search select {
     border: none;
 }
 
@@ -71,7 +75,7 @@
     border: 2px solid rgb(235,161,173);
 }
 
-.order_contaner {
+.order_container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -101,7 +105,7 @@
 }
 
 .language img {
-    width: 4%;
+    width: 20px;
 }
 
 .cart {
@@ -118,7 +122,7 @@
     color: orange;
 }
 
-.order_contaner a:hover,
+.order_container a:hover,
 .delivery:hover,
 .logo_container a:hover,
 .lower_container ul li:hover{
@@ -145,3 +149,4 @@
         display: none;
     }
 }
+
