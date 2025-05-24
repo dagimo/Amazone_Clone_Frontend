@@ -1,5 +1,6 @@
 import React from 'react'
 import classes from './Header.module.css'
+import { Link } from 'react-router-dom';
 import { SlLocationPin } from "react-icons/sl";
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
@@ -7,14 +8,14 @@ import LowerHeader from './LowerHeader';
 function Header() {
   return (
     <>
-    <section className=''>
+    <section>
         
-        <div className={classes.header_container}>
+    <div className={classes.header_container}>
             <div className={classes.logo_container}>
             {/*logo section*/}
-            <a href="">
+            <Link to = "/">
                 <img src="https://pngimg.com/uploads/amazon/amazon_PNG11.png" alt="amazon logo" />
-            </a>
+            </Link>
             {/*delivery*/}
             <div className={classes.delivery}>
                 <span>
@@ -31,7 +32,7 @@ function Header() {
 
             </div>
 
-            </div>
+        </div>
             <div className={classes.search}>
             {/*search*/}
             
@@ -53,24 +54,24 @@ function Header() {
                 <option value="">EN</option>
             </select>
 
-            </a>
+            </a >
 
                 {/*three components*/}
             <a href = ''>
-            <p>Sign In</p>
-            <span>Account & Lists</span>
-             </a>
-    {/*orders*/}
-            <a href="">
-            <p>returns</p>
-            <span>& Orders</span>
+                <p>Sign In</p>
+                <span>Account & Lists</span>
             </a>
-    {/*cart*/}
-            <a href='' className={classes.cart}>
+            {/*orders*/}
+            <Link to = "/orders">
+                <p>returns</p>
+                <span>& Orders</span>
+            </Link>
+            {/*cart*/}
+            <Link to = "/cart" className={classes.cart}>
             <BiCart />
-    {/*icon*/}
+            {/*icon*/}
             <span>0</span>
-            </a>
+            </Link >
 
         </div>
     </div>
