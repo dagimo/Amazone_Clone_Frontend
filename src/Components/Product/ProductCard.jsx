@@ -14,10 +14,19 @@ function ProductCard({product}) {
         <div>
             <h3>{title}</h3>
         <div className={classes.rating}>
-            {/*rating*/}
-            <Rating values={rating.rate} precision={0.1}/>
-            {/*count*/}
-            <small>{rating.count}</small>
+        {rating && (
+                    <div className={classes.rating}>
+                        {/* Use 'value' prop for MUI Rating.
+                          'rating.rate || 0' ensures that if 'rating.rate' is undefined/null, it defaults to 0.
+                          'readOnly' makes the stars non-interactive.
+                        */}
+                        <Rating value={rating.rate || 0} precision={0.1} readOnly />
+
+                        {/* 'rating.count || 0' ensures that if 'rating.count' is undefined/null, it defaults to 0.
+                        */}
+                        <small>{rating.count || 0}</small>
+                    </div>
+                )}
         </div>
         <div>
             {/*price */}

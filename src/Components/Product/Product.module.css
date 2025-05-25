@@ -48,6 +48,8 @@
     margin: 100px auto 100px auto;
     gap: 50px;
     justify-items: center;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .products_container section {
