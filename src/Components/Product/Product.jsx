@@ -27,7 +27,8 @@ function Product() {
       isLoading? (<Loader/>):(    <section className={classes.products_container}>
         {/* If products is empty, the map function simply won't render anything */}
         {products.map((singleProduct) => (
-          <ProductCard product={singleProduct} key={singleProduct.id} />
+          
+          <ProductCard renderAdd={true} product={singleProduct} key={singleProduct.id} />
         ))}
       </section>)
     }

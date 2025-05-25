@@ -3,6 +3,12 @@
     margin: 0;
 }
 
+.fixed {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
 .header_container{
     background-color: #1a1a1a;
     display: flex;
@@ -54,11 +60,12 @@
 .order_container {
     display: flex;
     align-items: center;
-    justify-content:center;
-    max-width: 450px;
+    justify-content: center;
+    /* max-width: 450px; */
     gap: 10px;
     text-decoration: none;
     color: white;
+
     
 }
 .search select,
@@ -88,17 +95,17 @@
 
 
 
-.order_contaner a {
+.order_container a {
     text-decoration: none;
     color: white;
 }
 
-.order_contaner p {
+.order_container p {
     font-size: 10px;
 }
 
 .language {
-    width: 100px;
+    /* width: 100px; */
     display: flex;
     padding: 10px;
 }
@@ -115,12 +122,18 @@
 
 .cart {
     position: relative;
+    padding: 10px 15px;
+    min-width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 .cart span {
     position: absolute;
     font-weight: bold;
-    top: 0px;
+    top: 10px;
     font-size: 20px;
     background-color: #1a1a1a;
     left: 10px;

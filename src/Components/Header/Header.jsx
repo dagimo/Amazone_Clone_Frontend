@@ -6,12 +6,17 @@ import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import LowerHeader from './LowerHeader';
 import { DataContext } from '../DataProvider/DataProvider';
+
+
 function Header() {
 
     const [{basket},dispatch] = useContext (DataContext)
+    const totalItem = basket?.reduce ((amount, item)=>{
+        return item.amount + amount
+    },0)
 
   return (
-    <>
+    <section className={classes.fixed}>
     <section>
         
     <div className={classes.header_container}>
@@ -72,9 +77,9 @@ function Header() {
             </Link>
             {/*cart*/}
             <Link to = "/cart" className={classes.cart}>
-            <BiCart />
+            <BiCart size={30}/>
             {/*icon*/}
-            <span>{basket.length}</span>
+            <span>{totalItem}</span>
             </Link >
 
         </div>
@@ -86,7 +91,7 @@ function Header() {
     <LowerHeader/>
 
 
-    </>
+    </section>
 
     
   )
