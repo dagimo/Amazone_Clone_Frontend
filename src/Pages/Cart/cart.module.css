@@ -83,6 +83,7 @@
     .container{
         flex-direction: column;
         order: 1;
+        align-items: center;
     }
     
 }

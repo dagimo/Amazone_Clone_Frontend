@@ -77,7 +77,7 @@ function Header() {
             </Link>
             {/*cart*/}
             <Link to = "/cart" className={classes.cart}>
-            <BiCart size={30}/>
+            <BiCart size={50}/>
             {/*icon*/}
             <span>{totalItem}</span>
             </Link >
