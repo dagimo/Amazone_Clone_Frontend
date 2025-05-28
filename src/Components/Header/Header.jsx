@@ -50,7 +50,7 @@ function Header() {
             </select>
             <input type="text" name='' id='' placeholder='search product' />
             {/*icon */}
-            <BsSearch size={25}/>
+            <BsSearch size={40}/>
         </div>
 
         
@@ -66,10 +66,10 @@ function Header() {
             </a >
 
                 {/*three components*/}
-            <a href = ''>
+            <Link to = "/auth">
                 <p>Sign In</p>
                 <span>Account & Lists</span>
-            </a>
+            </Link>
             {/*orders*/}
             <Link to = "/orders">
                 <p>returns</p>
@@ -77,7 +77,7 @@ function Header() {
             </Link>
             {/*cart*/}
             <Link to = "/cart" className={classes.cart}>
-            <BiCart size={50}/>
+            <BiCart size={40}/>
             {/*icon*/}
             <span>{totalItem}</span>
             </Link >
