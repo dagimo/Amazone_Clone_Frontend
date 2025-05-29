@@ -1,13 +1,68 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useContext } from 'react'
+import { Link, useNavigate, useNavigation } from 'react-router-dom'
 import classes from './Signup.module.css'
 import LayOut from '../../Components/LayOut/LayOut.jsx'
+import {auth} from '../../Utility/firebase.jsx'
+import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth"
+import { DataContext } from '../../Components/DataProvider/DataProvider.jsx'
+import { Type } from '../../Utility/action.type.jsx'
+import {CircleLoader } from 'react-spinners'
+
 
 function Signup() {
+  const [email, setEmail]=useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState({
+    signIn: false,
+    signUP: false
+  })
+  const [{user}, dispatch]=useContext(DataContext)
+  const navigate = useNavigate()
+  //the below funciton is used to cofigure the sign up/ on
+  const authHandler = (e) => {
+    e.preventDefault()
+    console.log(e.target.name);
+    if(e.target.name == "signin"){
+      //firebase authentication
+      setLoading ({...loading, signIn:true})
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userInfo)=>{
+        console.log(user);
+        dispatch({
+          type:Type.SET_USER,
+          userInfo: userInfo.user
+        });
+        setLoading({...loading, signIn:false})
+        navigate('/')
+      }).catch((err)=>{
+        setError(err.message)
+        setLoading({...loading, signIn:false})
+      })
+    }else{
+      setLoading ({...loading, signUp: true})
+      createUserWithEmailAndPassword(auth, email, password).then((userInfo)=>{
+        
+        dispatch({
+          type:Type.SET_USER,
+          userInfo: userInfo.user
+        });
+        setLoading ({...loading, signUp: false})
+        navigate('/')
+      }).catch((err)=>{
+        setError(err.message);
+        setLoading ({...loading, signUp: false})
+      });
+
+    }
+
+  };
+
+
   return (
-    <LayOut>
+    
     <section className={classes.login}>
-    <Link>
+    <Link to={'/'}>
     <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon Logo" />
     </Link>
 
@@ -17,20 +72,30 @@ function Signup() {
       <form action="">
         <div>
           <label htmlFor="email">Email</label>
-          <input type="email" id='email' />
+          {/*control input */}
+          <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" id='email' />
         </div>
         <div>
           <label htmlFor="password">Password</label>
-          <input type="password" id='password' />
+          <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" id='password' />
         </div>
-        <button className={classes.login_signInButton}>
-          Sign In
+        <button type='submit' name='signin' onClick={authHandler} className={classes.login_signInButton}>
+          {
+            loading.signIn?(<CircleLoader color="#000" size = {15} ></CircleLoader >): ("Sign In")
+          }
+          
         </button>
           {/*agreement*/}
             <p>By signing-in you agree to the AMAZONE CLONE conditions of use and sale. Please see our privacy notice, our cookies notice and out interest based ADS no</p>
-          <button className={classes.login_registerButton}>
-            Creat your Amazon Account
+            {/*creat account btn */}
+          <button type='submit' name='signup' onClick={authHandler} className={classes.login_registerButton}>
+          {
+            loading.signUP?(<CircleLoader color="#000" size = {15} ></CircleLoader >): ("Creat your Amazon Account")
+          }
+            
           </button>
+
+          {error && <small style={{paddingTop: "5px", color: "red"}}>{error}</small>}
 
 
       </form>
@@ -39,7 +104,7 @@ function Signup() {
 
 
     </section>
-    </LayOut>
+   
 
     
   );

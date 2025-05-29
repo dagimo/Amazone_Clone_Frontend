@@ -3,11 +3,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 30px;
 }
 .login img {
     height: 30px auto;
     object-fit: contain;
     width: 100px;
+    padding-bottom: 20px;
 
 }
 
