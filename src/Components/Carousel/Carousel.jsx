@@ -3,7 +3,7 @@ import {img} from './img/data'
 import { Carousel } from 'react-responsive-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-import classes from './carousel.module.css'
+import classes from './Carousel.module.css'
 
 function CarouselEffect() {
   return (
