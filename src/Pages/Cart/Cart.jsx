@@ -37,9 +37,8 @@ function Cart() {
             {
               basket?.length ==0?(<p>Opps! No item in your cart</p> ):(
                 basket?.map((item,i)=>{
-                  return <section className={classes.cart_product}>
+                  return <section className={classes.cart_product} key={item.id || i}>
                     <ProductCard
-                    key={i}
                     product = {item}
                     renderDesc ={true}
                     renderAdd={false}

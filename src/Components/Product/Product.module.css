@@ -71,7 +71,7 @@
 }
 
 .product_flexed img{
-    height: 50vh;
+    height: 200px;
 }
 
 @media screen and (max-width: 768px) {

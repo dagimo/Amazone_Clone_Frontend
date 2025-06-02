@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Link, useNavigate, useNavigation } from 'react-router-dom'
+import { Link, useNavigate, useNavigation, useLocation } from 'react-router-dom'
 import classes from './Signup.module.css'
 import LayOut from '../../Components/LayOut/LayOut.jsx'
 import {auth} from '../../Utility/firebase.jsx'
@@ -18,8 +18,10 @@ function Signup() {
     signUP: false
   })
   const [{user}, dispatch]=useContext(DataContext)
-  const navigate = useNavigate()
-  //the below funciton is used to cofigure the sign up/ on
+  const navigate = useNavigate();
+  const naveStateData = useLocation();
+  console.log(naveStateData);
+  //the below function is used to configure the sign up/ on
   const authHandler = (e) => {
     e.preventDefault()
     console.log(e.target.name);
@@ -31,10 +33,10 @@ function Signup() {
         console.log(user);
         dispatch({
           type:Type.SET_USER,
-          userInfo: userInfo.user
+          user: userInfo.user
         });
         setLoading({...loading, signIn:false})
-        navigate('/')
+        navigate(naveStateData?.state?.redirect || '/');
       }).catch((err)=>{
         setError(err.message)
         setLoading({...loading, signIn:false})
@@ -45,10 +47,10 @@ function Signup() {
         
         dispatch({
           type:Type.SET_USER,
-          userInfo: userInfo.user
+          user: userInfo.user
         });
         setLoading ({...loading, signUp: false})
-        navigate('/')
+        navigate(naveStateData?.state?.redirect || '/')
       }).catch((err)=>{
         setError(err.message);
         setLoading ({...loading, signUp: false})
@@ -69,6 +71,17 @@ function Signup() {
     {/*form*/}
     <div className={classes.login_container}>
       <h1>Sign In</h1>
+      {naveStateData?.state?.msg && (
+        <small 
+        style={{
+          padding:'5px',
+          textAlign:"center",
+          color: "red",
+          fontWeight:"bold",
+        }}>
+          {naveStateData?.state?.msg}
+        </small>
+      )}
       <form action="">
         <div>
           <label htmlFor="email">Email</label>

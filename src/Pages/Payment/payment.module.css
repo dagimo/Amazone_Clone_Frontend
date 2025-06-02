@@ -29,7 +29,7 @@
     width: 100%;
 }
 .Payment_details {
-    /* font-size: 20px; */
+    font-size: 20px;
 
 }
 .payment_price > div {
@@ -50,4 +50,16 @@
 .Payment_details button:hover {
     background-color: var(--primary-shade);
 
+}
+.loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    color: rgb(52,52,52);
+}
+@media screen and (max-width: 768px) {
+    .flex {
+        flex-direction: column;
+    }
 }

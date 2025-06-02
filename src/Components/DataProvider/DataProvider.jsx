@@ -1,16 +1,39 @@
-import React,{createContext} from 'react'
-import { useReducer } from 'react'
-// import { Children } from 'react'
-import { initialState , reducer} from '../../Utility/reducer'
+import React, { createContext, useReducer, useEffect } from 'react'; 
+import { initialState, reducer } from '../../Utility/reducer';
+import { auth } from '../../Utility/firebase'; 
 
+export const DataContext = createContext();
 
+export const DataProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(reducer, initialState); // <-- Destructure state and dispatch
 
-export const DataContext = createContext()
+    useEffect(() => {
+        // This listener will run whenever the user's authentication state changes
+        const unsubscribe = auth.onAuthStateChanged((authUser) => {
+            if (authUser) {
+                // User is signed in
+                dispatch({
+                    type: "SET_USER", // <-- Dispatch an action to set the user
+                    user: authUser,
+                });
+            } else {
+                // User is signed out
+                dispatch({
+                    type: "SET_USER", // <-- Dispatch an action to clear the user
+                    user: null,
+                });
+            }
+        });
 
-export const DataProvider = ({children})=>{
+        // Cleanup subscription on component unmount
+        return () => {
+            unsubscribe();
+        };
+    }, []); // Empty dependency array means this effect runs once on mount
+
     return (
-        <DataContext.Provider value = {useReducer(reducer,initialState)}>
+        <DataContext.Provider value={[state, dispatch]}> {/* <-- Pass state and dispatch */}
             {children}
         </DataContext.Provider>
-    )
-}
+    );
+};
