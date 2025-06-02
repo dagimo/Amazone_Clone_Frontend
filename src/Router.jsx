@@ -5,7 +5,7 @@ import Signup from './Pages/Auth/Signup'
 import Payment from './Pages/Payment/Payment'
 import Orders from './Pages/Orders/Orders'
 import Cart from './Pages/Cart/Cart'
-import Results from './pages/Results/Results'
+import Results from './Pages/Results/Results'
 import ProductDetail from './Pages/ProductDetail/ProductDetail'
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
