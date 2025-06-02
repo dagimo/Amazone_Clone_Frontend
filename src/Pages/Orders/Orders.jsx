@@ -4,7 +4,7 @@ import {db} from "../../Utility/firebase"
 import { collection, doc, query, orderBy,onSnapshot } from 'firebase/firestore'
 import { DataContext } from '../../Components/DataProvider/DataProvider'
 import { useContext } from 'react'
-import classes from "./Orders.module.css"
+import classes from "./orders.module.css"
 import ProductCard from "../../Components/Product/ProductCard"
 function Orders() {
   //Destructure user and dispatch from DataContext
